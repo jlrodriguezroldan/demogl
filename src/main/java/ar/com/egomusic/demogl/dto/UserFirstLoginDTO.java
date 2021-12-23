@@ -6,13 +6,17 @@
 package ar.com.egomusic.demogl.dto;
 
 import java.time.LocalDateTime;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author lemon
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserFirstLoginDTO {
 
     private String id;
