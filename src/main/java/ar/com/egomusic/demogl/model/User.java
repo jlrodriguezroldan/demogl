@@ -5,16 +5,21 @@
  */
 package ar.com.egomusic.demogl.model;
 
+import ar.com.egomusic.demogl.customannotation.EmailConstraint;
+import ar.com.egomusic.demogl.customannotation.PasswordConstraint;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Email;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  *
@@ -29,16 +34,34 @@ public class User {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false)
-    String id;
+    private String id;
+
     @Column(name = "name")
-    String name;
+    private String name;
+
     @Column(name = "email")
-    @Email(message = "Email should be valid")
-    String email;
+    @EmailConstraint
+    private String email;
+
     @Column(name = "password")
+    @PasswordConstraint
+    private String password;
+
+    @Column(name ="created")
+    @CreationTimestamp
+    private LocalDateTime created;
     
-    String password;
+    @Column(name ="lastlogin")
+    @UpdateTimestamp
+    private LocalDateTime lastLogin;
+    
+    @Column(name ="token")
+    private String token;
+    
+    @Column(name = "active")
+    private Boolean isActive;
+
     @OneToMany
-    List<Phone> listPhones;
+    private List<Phone> listPhones;
 
 }

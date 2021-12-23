@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
@@ -22,15 +23,20 @@ import lombok.Data;
 @Data
 @Builder
 public class Phone {
+
     @Id
     @Column(name = "idPhone")
-    Integer id;
+    private Integer id;
+
     @Column(name = "number")
-    Long number;
+    private Long number;
+
     @Column(name = "citycode")
-    Integer cityCode;
+    private Integer cityCode;
+
     @Column(name = "contrycode")
-    String contryCode;
+    private String contryCode;
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "fk_idUser")
