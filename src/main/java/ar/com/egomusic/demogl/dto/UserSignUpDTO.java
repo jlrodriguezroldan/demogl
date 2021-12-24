@@ -21,7 +21,7 @@ import lombok.Singular;
  */
 @Data
 @Builder
-public class UserSignupDTO {
+public class UserSignUpDTO {
 
     private String name;
 
